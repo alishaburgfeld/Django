@@ -6,6 +6,7 @@ from django.utils import timezone
 
 class SwimRecordTestCase(TestCase):
 
+    # first_name="Alisha", last_name="Burgfeld", team_name="Jumping Jellybeans" 
     record = SwimRecord()
 
     def test_01_validate_first_name_presence(self):
@@ -77,3 +78,20 @@ class SwimRecordTestCase(TestCase):
             raise Exception("full_clean should throw a validation error")
         except ValidationError as e:
             self.assertTrue("Can't break record before record was set." in e.message_dict['record_broken_date'])
+
+
+
+
+# source ~/VEnvirons/Validation_Practice_VE/bin/activate
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,52 +1,37 @@
 from django.db import models
 
 
-class Users(models.Model):
+class User(models.Model):
     pass
 
-class Orders(models.Model):
+class Restaurant(models.Model):
+    pass
+
+
+class Order(models.Model):
     # A user has many orders
     # An order belongs to a user
-    user = models.ForeignKey(Users, on_delete=models.CASCADE,related_name="users")
+    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name="orders")
+    # An order belongs to a restaurant
+    # A restaurant has many orders
+    restaurant= models.ForeignKey(Restaurant, on_delete=models.CASCADE,related_name="orders")
 
-class Restaurants(models.Model):
-    order= models.ForeignKey(Orders, on_delete=models.CASCADE, related_name="orders")
 
-class FoodItems(models.Model):
+class FoodItem(models.Model):
     pass
 
-class OrderFoodItems(models.Model):
-    pass
+class OrderFoodItem(models.Model):
+    # An order_food_item belongs to a food_item
+    # A food item has many order_food_items (I think they have this the wrong way around??)
+    food_item= models.ForeignKey(FoodItem, on_delete=models.CASCADE,related_name="order_food_items")
+    # An order_food_item belongs to an order
+    # An order has many order_food_items
+    order= models.ForeignKey(Order, on_delete=models.CASCADE,related_name="order_food_items")
 
 
 # Associations
 
-
-# A restaurant has many orders
-# An order belongs to a restaurant
-# An order has many order_food_items
-# An order_food_item belongs to an order
-# A food item has many order_food_items
-# An order_food_item belongs to a food_item
 # And finally if you have set up your associations correctly a user should have many food items through orders. See the final test.
-
-
-# class User(models.Model):
-#     pass
-
-# class Shop(models.Model):
-#     owner = models.ForeignKey(User, on_delete=models.CASCADE,)
-    
-# #product 
-# class Product(models.Model):
-#     shop= models.ForeignKey(Shop, on_delete=models.CASCADE, related_name="products")
-    
-
-# class Review(models.Model):
-#     product= models.ForeignKey(Product, on_delete=models.CASCADE, related_name="reviews")
-#     user= models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviewed_products")
-    
-
 
 
 

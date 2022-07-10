@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 # create virtual environment
 # source ~/VEnvirons/Validation_Practice_VE/bin/activate
-# create database (psql postgres -> create database amazon->\q-> psql amazon)
+# create database (psql postgres -> create database dbname->\q-> psql dbname)
 # connect database in project settings file.
     # DATABASES = {
     #     'default': {
@@ -13,6 +13,7 @@ from django.shortcuts import render
     #         'NAME': 'amazon',
     #     }
     # }
+# add app name to settings installed_apps
 # python manage.py makemigrations <appname>
 # python manage.py migrate
 # \dt  inside database should now show you the tables you've created

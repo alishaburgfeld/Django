@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'car_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'car_app',
+        'NAME': 'carb_brands',
     }
 }
 

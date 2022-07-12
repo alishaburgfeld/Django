@@ -1,0 +1,15 @@
+<form>
+	<!-- edit brand_name -->
+	<h1 id="{{brand.id}}_name">Brand: {{brand.name}}</h1>
+	<input type="text" id="{{brand.id}}_nameInput" />
+	<button type="submit" id="{{brand.id}}_nameButton" onclick="edit_brand_name({{brand.id}})">Edit</button>
+	<h2 id="{{brand.id}}_description">Description: {{brand.description}}</h2>
+	<input type="text" id="{{brand.id}}_descriptionInput" />
+	<button type="submit" id="{{brand.id}}_descriptionButton" onclick="edit_brand_description({{brand.id}})">
+		Edit
+	</button>
+</form>
+
+<h2 id="h2_id"></h2>
+
+<button onclick="add_item({{data_item.item.id}})">Add Item</button>

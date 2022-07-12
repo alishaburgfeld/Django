@@ -1,0 +1,22 @@
+[
+    {
+    "model": "cars_and_brands.car",
+    "pk": 1,
+    "fields": {
+        "brand": 1,
+        "model": "Camry",
+        "year": 2020,
+        "adam_curse": "Gotta be quicker than that!"
+    }
+    },
+    {
+        "model": "cars_and_brands.car",
+        "pk": 2,
+        "fields": {
+            "brand": 2,
+            "model": "S",
+            "year": 2020,
+            "adam_curse": "Were you on autopilot!?"
+        }
+        }   
+]

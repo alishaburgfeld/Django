@@ -1,0 +1,26 @@
+[
+    {
+    "model": "cars_and_brands.brand",
+    "pk": 1,
+    "fields": {
+        "name": "Toyota",
+        "description": "American Made!"
+    }
+},
+{
+    "model": "cars_and_brands.brand",
+    "pk": 2,
+    "fields": {
+        "name": "Tesla",
+        "description": "The king of electric cars"
+}},
+
+{"model": "cars_and_brands.brand",
+    "pk": 3,
+    "fields": {
+        "name": "Honda",
+        "description": "The older version of Hyundai"
+    }}
+
+
+]

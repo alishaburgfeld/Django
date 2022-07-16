@@ -1,42 +1,33 @@
-{% extends "to_do_app/layout.html" %} {% block scripts %}
-<script src="/static/Javascript/addtodo.js"></script>
-{% endblock %} {% block content %}
+{% extends "to_do_app/layout.html" %} {% block content %}
 <h1>Lets get crackin!</h1>
-<ul>
-	{% for item in user_todos %}
-	<li>
-		<h2>Category:</h2>
-		<span>{item.category}</span>
-		<h2>Priority:</h2>
-		<span>{item.priority}</span>
-		<h2>Description</h2>
-		<span>{item.description}</span>
-		<h2>Due By:</h2>
-		<span>{item.due_date}</span>
-	</li>
-	{% endfor %}
-</ul>
+{% if user_todos %}
+<div class="row">
+	<div id="to-do-list-titles">
+		<span>Category</span>
+		<span>Title</span>
+		<span>Priority</span>
+	</div>
+</div>
+<div class="row">
+	<div class="list-group">
+		{% for item in user_todos %}
+		<label class="list-group-item">
+			<input class="form-check-input me-{{ forloop.counter }}" type="checkbox" value="" />
+			<a href="/task/{{item.id}}">
+				<span>{{item.category}}</span>
+				<span>{{item.title}}</span>
+				<span>{{item.priority}}</span>
+			</a>
+		</label>
+		{% endfor %}
+	</div>
+</div>
+{% else %}
+<h2>You don't have any tasks yet!</h2>
+{% endif %}
 
-<h3>Add a task</h3>
-
-<form class="row gy-2 gx-3 align-items-center" onsubmit="addToDo(event)">
-	<div class="col-auto">
-		<label for="add_category">Category</label>
-		<input type="text" class="form-control" id="add_category" name="add_category" placeholder="Category" required />
-	</div>
-	<div class="col-auto">
-		<label for="add_priority">Priority</label>
-		<input type="text" class="form-control" id="add_priority" name="add_priority" placeholder="Priority" />
-	</div>
-	<div class="col-auto">
-		<label for="add_description">Description</label>
-		<textarea class="form-control" id="add_description" name="add_description" rows="3" required></textarea>
-	</div>
-	<div class="col-auto">
-		<label for="add_date">Due By:</label>
-		<input type="date" id="add_date" name="add_date" placeholder="Due By" />
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<a href="/addtask/">
+	<h3>Add a task</h3>
+</a>
 
 {% endblock %}

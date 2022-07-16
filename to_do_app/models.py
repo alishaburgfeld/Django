@@ -10,6 +10,7 @@ REQUIRED_FIELDS=[]
 
 class Task(models.Model):
     category=models.CharField(max_length=100)
+    title=models.CharField(max_length=100)
     description=models.CharField(max_length=400)
     due_date=models.DateField(null=True)
     priority=models.IntegerField(null=True)

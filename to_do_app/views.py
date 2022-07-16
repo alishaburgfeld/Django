@@ -48,7 +48,6 @@ def log_in(request):
         email= body['email']
         password=body['password']
         # logging.error({email}, {password})
-        print({email}, {password})
         user = authenticate(username=email, password=password)
         if user is not None:
             if user.is_active:
@@ -72,24 +71,40 @@ def log_out(request):
 def todos(request):
     if request.user.is_authenticated:
         user_todos= Task.objects.filter(user=request.user.id).values().order_by("category","priority")
+        print(user_todos)
         return render(request,'to_do_app/todos.html',{"user_todos":user_todos})
 
 @csrf_exempt
 def add_task(request):
     if request.method=="POST":
         data=json.loads(request.body)
+        print(f"GOT ADD TASK DATA! {data}")
         task = Task(
             category=data['add_category'],
             description=data['add_description'],
+            title=data['add_title'],
             priority=data['add_priority'],
             due_date=data['add_date'],
-            user=request.user.id
+            user=request.user
+            # why isn't this request.user.id???
         )
         task.full_clean
         task.save()
 
         print(data['add_description'])
-    return JsonResponse({'success': True, 'data':model_to_dict(task)}) 
+        return JsonResponse({'success': True, 'data':model_to_dict(task)})
+    elif request.method=='GET':
+        return render(request,'to_do_app/add_task.html')
+
+def get_task(request,task_id):
+    task = Task.objects.get(id = task_id)
+    print(task.description)
+    print(model_to_dict(task))
+    return render(request,'to_do_app/task.html', {"task": model_to_dict(task)}) 
+
+def edit_task(request,task_id):
+    if request.method=='POST':
+        return JsonResponse({"success":True})
 
 
 # create virtual environment

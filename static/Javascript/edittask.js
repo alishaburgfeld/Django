@@ -1,18 +1,19 @@
 function addToDo(event) {
 	event.preventDefault();
-	console.log("IN JS");
-	let new_task = {};
+	span = document.getElementById("edit-span");
+	task_id = span.value;
+	console.log("EDITING NOW");
+	let edited_data = {};
 
 	for (let i = 0; i < event.target.length; i++) {
 		let name = event.target[i].name;
 		let value = event.target[i].value;
 
-		new_task[name] = value;
+		edited_data[name] = value;
 	}
-	console.log(new_task);
-	event.target.reset();
+	console.log(edited_data);
 	axios
-		.post("/addtask/", new_task)
+		.post("/edit/", edited_data)
 		.then(function (response) {
 			console.log(response.data.data);
 			// task = response.data.data;

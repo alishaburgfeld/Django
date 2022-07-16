@@ -1,0 +1,41 @@
+{% extends "to_do_app/layout.html" %} {% block scripts %}
+<script src="/static/Javascript/addtodo.js"></script>
+{% endblock %} {% block content %}
+<form class="row gy-2 gx-3 align-items-center" onsubmit="addToDo(event)">
+	<div class="col-12">
+		<div class="col-auto">
+			<label for="add_category">Category</label>
+			<input
+				type="text"
+				class="form-control"
+				id="add_category"
+				name="add_category"
+				placeholder="Category"
+				required
+			/>
+		</div>
+		<div class="col-auto">
+			<label for="add_title">Title</label>
+			<input type="text" class="form-control" id="add_title" name="add_title" placeholder="Title" required />
+		</div>
+		<div class="col-auto">
+			<label for="add_priority">Priority</label>
+			<input type="text" class="form-control" id="add_priority" name="add_priority" placeholder="Priority" />
+		</div>
+	</div>
+	<div class="col-12">
+		<div class="col-auto">
+			<label for="add_description">Description</label>
+			<textarea class="form-control" id="add_description" name="add_description" rows="3" required></textarea>
+		</div>
+		<div class="col-auto">
+			<label for="add_date">Due By:</label>
+			<input type="date" id="add_date" name="add_date" placeholder="Due By" />
+		</div>
+	</div>
+	<div class="col-12">
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</form>
+
+{% endblock %}

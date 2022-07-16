@@ -25,6 +25,7 @@ function sign_up(event) {
 				login_redirect.innerHTML = 'You have successfully signed up! Login <a href="/log_in"> here </a>';
 				// THIS ISN'T WORKING!!!!!!!!!
 				//could you do another axios. post here with the datbase info sendin it to login to auto log in the user?
+				alert("You have successfully signed up!");
 			}
 		});
 }

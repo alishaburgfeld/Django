@@ -1,5 +1,11 @@
+{% extends "to_do_app/layout.html" %} {% block content %}
 <h1>Welcome to To-Dos!</h1>
 
 <a href="/log_in">
 	<button>Log in!</button>
 </a>
+
+<!-- I want to be able to add something like "if user is logged in" -->
+<button><a href="/log_out">Log out!</a></button>
+
+{% endblock %}

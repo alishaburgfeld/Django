@@ -1,28 +1,8 @@
-document.getElementById("button-test-two").addEventListener("submit", (event) => {
+// document.getElementById("button-test").addEventListener("submit", (event) => {
+// 	event.preventDefault();
+// });
+function sign_up(event) {
 	event.preventDefault();
-});
-function log_in() {
-	email_input = document.getElementById("log_in_email_input");
-	password_input = document.getElementById("log_in_password_input");
-	email = document.getElementById("log_in_email_input").value;
-	console.log(email);
-	password = document.getElementById("log_in_password_input").value;
-	console.log(password);
-	axios
-		.post("/log_in/", {
-			email: email,
-			password: password,
-		})
-		.then((response) => {
-			console.log("log-in-test");
-			console.log(response.data);
-		});
-}
-
-document.getElementById("button-test").addEventListener("submit", (event) => {
-	event.preventDefault();
-});
-function sign_up() {
 	// do we need to prevent default? do we need to pass in event?
 	email_input = document.getElementById("sign_up_email_input");
 	password_input = document.getElementById("sign_up_password_input");
@@ -40,6 +20,11 @@ function sign_up() {
 			// const elem = document.getElementById("tester");
 			// elem.innerHTML = response.data.email;
 			console.log("pretty please");
-			console.log(response);
+			if (response.data.Success === "True") {
+				login_redirect = document.getElementById("log_in_redirect");
+				login_redirect.innerHTML = 'You have successfully signed up! Login <a href="/log_in"> here </a>';
+				// THIS ISN'T WORKING!!!!!!!!!
+				//could you do another axios. post here with the datbase info sendin it to login to auto log in the user?
+			}
 		});
 }

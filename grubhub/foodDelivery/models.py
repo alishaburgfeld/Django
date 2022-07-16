@@ -7,6 +7,8 @@ class User(models.Model):
 class Restaurant(models.Model):
     pass
 
+class FoodItem(models.Model):
+    pass
 
 class Order(models.Model):
     # A user has many orders
@@ -15,18 +17,21 @@ class Order(models.Model):
     # An order belongs to a restaurant
     # A restaurant has many orders
     restaurant= models.ForeignKey(Restaurant, on_delete=models.CASCADE,related_name="orders")
+    food_items = models.ManyToManyField(FoodItem, through="OrderFoodItem", related_name="orders")
+    #not sure why the above works - copied it from Justin
 
 
-class FoodItem(models.Model):
-    pass
+
 
 class OrderFoodItem(models.Model):
-    # An order_food_item belongs to a food_item
+    # An order_food_item belongs to a food_item (thats confusing)
     # A food item has many order_food_items (I think they have this the wrong way around??)
-    food_item= models.ForeignKey(FoodItem, on_delete=models.CASCADE,related_name="order_food_items")
+    # food_item= models.ForeignKey(FoodItem, on_delete=models.CASCADE,related_name="orders")
+    food_item= models.ForeignKey(FoodItem, on_delete=models.CASCADE)
     # An order_food_item belongs to an order
     # An order has many order_food_items
-    order= models.ForeignKey(Order, on_delete=models.CASCADE,related_name="order_food_items")
+    # order= models.ForeignKey(Order, on_delete=models.CASCADE,related_name="food_items")
+    order= models.ForeignKey(Order, on_delete=models.CASCADE)
 
 
 # Associations

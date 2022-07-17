@@ -1,7 +1,7 @@
 function edittask(event) {
 	event.preventDefault();
 	let span = document.getElementById("edit-span");
-	let task_id = span.value;
+	let task_id = document.getElementById("edit-span").value;
 	console.log(`EDITING NOW: ${task_id} ${span}`);
 	let edited_data = {};
 
@@ -13,7 +13,7 @@ function edittask(event) {
 	}
 	console.log(edited_data);
 	axios
-		.post(`/task/edit/${task_id}`, edited_data)
+		.post(`/task/edit/${task_id}/`, edited_data)
 		.then(function (response) {
 			console.log(response.data.data);
 			window.location.href = "/todos/"; //can be used to refresh page

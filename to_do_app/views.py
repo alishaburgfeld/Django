@@ -97,6 +97,7 @@ def get_task(request,task_id):
     task = Task.objects.get(id = task_id)
     return render(request,'to_do_app/task.html', {"task": model_to_dict(task)}) 
 
+@csrf_exempt
 def edit_task(request,task_id):
     task = Task.objects.get(id = task_id)
     if request.method == 'GET':

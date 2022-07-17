@@ -1,0 +1,21 @@
+To-Do-App Questions:
+
+1) I was trying to notify a user if they successfully signed up by editing the “innerHTML” element on the sign-up page. I tried two different times, lines 23-32 on my “main.js” file shows this code - neither of which are working.
+
+2) Is it possible to automatically log in a user when they sign up? If, so how would you do this?
+
+3) I added a “category” attribute to my Task class - I wanted to be able to display the tasks in groups based on category, so my idea was I would pass in the different lists of tasks for category 1, 2, etc and then in my template it would be “for task in category 1 …. List task details” however because the user is creating X amount of categories with various names, I didn’t know how to go about this?
+
+4) How does a “remember me” option work on a login?
+
+5) I’m still a little confused on when to use a standard form vs when to use JavaScript — I thought somebody mentioned that JS would automatically update with real time data, but initially I had my to-do list set up with my “add task” form at the bottom to try and get the list to update automatically, but that wasn’t working - so I eventually just moved the form to its own page….
+
+6) On line 87 in my views page I have “user = request.user” —- why wouldn’t this be user = request.user.id?
+
+7) For my edit task page I have the input fields pre-filled with the existing data, but for the date I’d need to be able to put the data in YYYY-MM-DD format and I didn’t know how to get this from my “dateField”?
+
+8) Why isn’t my CSS working? Lines 1-5
+
+9) In my login.js file I initially just had lines 15-18 on there, which would redirect my user to /todos/ upon successful login, however once I added lines 19-23 now it DOES handle an unsuccessful login, but its not redirecting my user upon a successful login.. what do I have wrong here?
+
+10) In my edittask.js file line 3-4 I initially had this set to a SPAN line 4 on my edit_task.html form, however it would not grab the VALUE of the span… I had to change it to an input to be able to grab the value, why is that?

@@ -1,7 +1,7 @@
 {% extends "to_do_app/layout.html" %} {% block scripts %}
 <script src="/static/Javascript/edittask.js"></script>
 {% endblock %} {% block content %}
-<span class="visually-hidden" id="edit-span" value="{{task.id}}">{{task.id}}</span>
+<input class="visually-hidden" type="text" id="edit-span" value="{{task.id}}" />
 <form class="row gy-2 gx-3 align-items-center" onsubmit="edittask(event)">
 	<div class="col-12">
 		<div class="col-auto">

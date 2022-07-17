@@ -12,9 +12,10 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 
 def index(request):
-    # if request.user.is_authenticated:
-    #     return render(request,'to_do_app/index.html',{})
-    return render(request,'to_do_app/index.html')
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/todos/')
+    else:
+        return render(request,'to_do_app/index.html')
 
 @csrf_exempt
 def sign_up(request):
@@ -44,7 +45,6 @@ def log_in(request):
     if request.method=="POST":
         body=json.loads(request.body)
         # logging.error(body)
-        # print(body)
         email= body['email']
         password=body['password']
         # logging.error({email}, {password})
@@ -71,14 +71,13 @@ def log_out(request):
 def todos(request):
     if request.user.is_authenticated:
         user_todos= Task.objects.filter(user=request.user.id).values().order_by("category","priority")
-        print(user_todos)
         return render(request,'to_do_app/todos.html',{"user_todos":user_todos})
 
 @csrf_exempt
 def add_task(request):
     if request.method=="POST":
         data=json.loads(request.body)
-        print(f"GOT ADD TASK DATA! {data}")
+        # print(f"GOT ADD TASK DATA! {data}")
         task = Task(
             category=data['add_category'],
             description=data['add_description'],
@@ -90,21 +89,40 @@ def add_task(request):
         )
         task.full_clean
         task.save()
-
-        print(data['add_description'])
         return JsonResponse({'success': True, 'data':model_to_dict(task)})
     elif request.method=='GET':
         return render(request,'to_do_app/add_task.html')
 
 def get_task(request,task_id):
     task = Task.objects.get(id = task_id)
-    print(task.description)
-    print(model_to_dict(task))
     return render(request,'to_do_app/task.html', {"task": model_to_dict(task)}) 
 
 def edit_task(request,task_id):
+    task = Task.objects.get(id = task_id)
+    if request.method == 'GET':
+        return render(request,'to_do_app/edit_task.html', {"task": model_to_dict(task)})
     if request.method=='POST':
-        return JsonResponse({"success":True})
+        try:
+            data=json.loads(request.body)
+            print(f"GOT EDIT TASK DATA!!!!!!!!!!!!!!!!!! {data}")
+            task.category=data['add_category']
+            task.description=data['add_description']
+            task.title=data['add_title']
+            task.priority=data['add_priority']
+            task.due_date=data['add_date']
+            task.user=request.user
+                # why isn't this request.user.id???
+            task.full_clean
+            task.save()
+            return JsonResponse({"success":True})
+        except:
+            return JsonResponse({"success":False, 'reason':"edit failed"})
+
+def delete_task(request,task_id):
+    task = Task.objects.get(id = task_id)
+    task.delete()
+    return HttpResponseRedirect('/todos/')
+
 
 
 # create virtual environment

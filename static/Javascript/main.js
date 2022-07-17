@@ -21,11 +21,13 @@ function sign_up(event) {
 			// elem.innerHTML = response.data.email;
 			console.log("pretty please");
 			if (response.data.Success === "True") {
-				login_redirect = document.getElementById("log_in_redirect");
-				login_redirect.innerHTML = 'You have successfully signed up! Login <a href="/log_in"> here </a>';
+				signed_up = document.getElementById("signed-up-alert");
+				signed_up.innerHTML = "You have successfully signed up!";
+				// login_redirect = document.getElementById("log_in_redirect");
+				// login_redirect.innerHTML = 'You have successfully signed up! Login <a href="/log_in"> here </a>';
 				// THIS ISN'T WORKING!!!!!!!!!
 				//could you do another axios. post here with the datbase info sendin it to login to auto log in the user?
-				alert("You have successfully signed up!");
+				// alert("You have successfully signed up!");
 			}
 		});
 }

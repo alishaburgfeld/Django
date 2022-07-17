@@ -12,9 +12,15 @@ function log_in(event) {
 			password: password,
 		})
 		.then((response) => {
-			console.log("log-in-test");
-			console.log(response.data);
-			window.location.href = "/todos/";
-			// works! yay!
+			if (response.data.Success === "True") {
+				console.log("log-in-works!");
+				console.log(response.data);
+				window.location.href = "/todos/";
+			} else {
+				console.log(response.data);
+				login_alert = document.getElementById("log-in-alert");
+				login_alert.innerHTML = `Sorry, ${response.data.reason}!`;
+			}
+			// fail works but now my success isn't workin
 		});
 }

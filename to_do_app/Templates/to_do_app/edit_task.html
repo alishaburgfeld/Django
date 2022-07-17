@@ -1,8 +1,8 @@
 {% extends "to_do_app/layout.html" %} {% block scripts %}
 <script src="/static/Javascript/edittask.js"></script>
 {% endblock %} {% block content %}
+<span class="visually-hidden" id="edit-span" value="{{task.id}}">{{task.id}}</span>
 <form class="row gy-2 gx-3 align-items-center" onsubmit="edittask(event)">
-	<span class="visually-hidden" id="edit-span">{{task.id}}</span>
 	<div class="col-12">
 		<div class="col-auto">
 			<label for="add_category">Category</label>
@@ -12,6 +12,7 @@
 				id="add_category"
 				name="add_category"
 				placeholder="{{task.category}}"
+				value="{{task.category}}"
 				required
 			/>
 		</div>
@@ -23,6 +24,7 @@
 				id="add_title"
 				name="add_title"
 				placeholder="{{task.title}}"
+				value="{{task.title}}"
 				required
 			/>
 		</div>
@@ -33,7 +35,8 @@
 				class="form-control"
 				id="add_priority"
 				name="add_priority"
-				placeholder="{{task.priority]]"
+				placeholder="{{task.priority}}"
+				value="{{task.priority}}"
 			/>
 		</div>
 	</div>
@@ -47,11 +50,20 @@
 				rows="3"
 				placeholder="{{task.description}}"
 				required
-			></textarea>
+			>
+"{{task.description}}"</textarea
+			>
 		</div>
 		<div class="col-auto">
 			<label for="add_date">Due By:</label>
-			<input type="date" id="add_date" name="add_date" placeholder="{{task.due_date}}" />
+			<input
+				type="date"
+				id="add_date"
+				name="add_date"
+				placeholder="{{task.due_date}}"
+				value="{{task.due_date}}"
+			/>
+			<!-- would need to set the value in a YYYY-MM-DD format -->
 		</div>
 	</div>
 	<div class="col-12">
@@ -59,4 +71,8 @@
 	</div>
 </form>
 
+<div class="navigation buttons">
+	<button><a href="/log_out">Log out!</a></button>
+	<button><a href="/">Home</a></button>
+</div>
 {% endblock %}

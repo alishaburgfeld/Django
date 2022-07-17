@@ -1,12 +1,31 @@
 {% extends "to_do_app/layout.html" %} {% block content %}
 <h1>{{task.title}}</h1>
-<ul>
-	<li>Category: {{task.category}}</li>
-	<li>Description: {{task.description}}</li>
-	<li>Priority: {{task.priority}}</li>
-	<li>Due By: {{task.due_date}}</li>
+<ul class="list-group">
+	<li class="list-group-item">
+		<span class="task-span-title">Category: </span><span class="task-span-data">{{task.category}}</span>
+	</li>
+	<li class="list-group-item">
+		<span class="task-span-title">Description: </span><span class="task-span-data">{{task.description}}</span>
+	</li>
+	<li class="list-group-item">
+		<span class="task-span-title">Priority: </span><span class="task-span-data">{{task.priority}}</span>
+	</li>
+	<li class="list-group-item">
+		<span class="task-span-title">Due By: </span><span class="task-span-data">{{task.due_date}}</span>
+	</li>
 </ul>
-<button>Edit</button>
-<button>Delete</button>
 
+<div class="task-buttons">
+	<a href="/task/edit/{{task.id}}">
+		<button class="btn btn-secondary">Edit</button>
+	</a>
+	<form method="GET" action="/task/delete/{{task.id}}">
+		<button type="submit" class="delete-btn btn btn-secondary">Delete</button>
+	</form>
+</div>
+
+<div class="navigation buttons">
+	<button><a href="/log_out">Log out!</a></button>
+	<button><a href="/">Home</a></button>
+</div>
 {% endblock %}

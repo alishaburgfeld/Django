@@ -1,8 +1,8 @@
-function addToDo(event) {
+function edittask(event) {
 	event.preventDefault();
-	span = document.getElementById("edit-span");
-	task_id = span.value;
-	console.log("EDITING NOW");
+	let span = document.getElementById("edit-span");
+	let task_id = span.value;
+	console.log(`EDITING NOW: ${task_id} ${span}`);
 	let edited_data = {};
 
 	for (let i = 0; i < event.target.length; i++) {
@@ -13,19 +13,9 @@ function addToDo(event) {
 	}
 	console.log(edited_data);
 	axios
-		.post("/edit/", edited_data)
+		.post(`/task/edit/${task_id}`, edited_data)
 		.then(function (response) {
 			console.log(response.data.data);
-			// task = response.data.data;
-
-			// let list = document.getElementById("to-do-list");
-			// let = document.createElement("li");
-			// li.innerHTML = `
-			// <span>${task.category}</span>
-			// <span>${task.title}</span>
-			// <span>${task.priority}</span>`;
-			// // console.log(li)
-			// list.appendChild(li);
 			window.location.href = "/todos/"; //can be used to refresh page
 		})
 		.catch((response) => {

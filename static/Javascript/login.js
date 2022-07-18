@@ -12,11 +12,11 @@ function log_in(event) {
 			password: password,
 		})
 		.then((response) => {
-			if (response.data.Success === "True") {
+			if (response.data.Success === true) {
 				console.log("log-in-works!");
 				console.log(response.data);
 				window.location.href = "/todos/";
-			} else {
+			} else if (response.data.Success === false) {
 				console.log(response.data);
 				login_alert = document.getElementById("log-in-alert");
 				login_alert.innerHTML = `Sorry, ${response.data.reason}!`;
